@@ -1,0 +1,25 @@
+<h1>{{ title }}</h1>
+<p>{{ quand}}</p>
+
+<p>Nous sommes le {{ quand | date }} </p>
+<p>Nous sommes le {{ quand | date:"dd/MM/yyyy" }} </p>
+<p>on est le {{ quand | date: 'short'}} </p>
+<p>on est le {{ quand | date: 'medium'}} </p>
+<p>on est le {{ quand | date: 'long'}} </p>
+<app-greeting></app-greeting>
+<p>on est le {{ quand | date: 'full'}} </p>
+<p>la date en json : {{ quand | json}} </p>
+
+<form (submit)='createTodo()'>
+  <input type="text" name="todoLabel" [(ngModel)]='newTodo' />
+</form>
+<p>Todo qui sera ajouté : {{ newTodo }}</p>
+<div [hidden]="todos.length">
+  Aucun Todo
+</div>
+<ul>
+  <li *ngFor='let todo of todos; let i = index; let odd = odd' [ngClass]="{'odd': !!odd}">
+    <hr *ngIf='i>0' />
+    Todo {{ i + 1 }} : <a [href]='"https://www.google.fr/#q=" + todo' target="_blank" rel="noopener noreferrer">{{ todo }}</a>
+  </li>
+</ul>
